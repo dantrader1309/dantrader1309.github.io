@@ -1,0 +1,910 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AADI Gestora — Aranceles 2026</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --naranja: #e55a00;
+    --naranja-suave: #fff5f0;
+    --gris-oscuro: #4a4a4a;
+    --gris-medio: #7a7a7a;
+    --gris-claro: #f5f5f5;
+    --azul-oscuro: #1a1a1a;
+    --blanco: #ffffff;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    color: var(--gris-oscuro);
+    background: var(--blanco);
+    min-height: 100vh;
+    line-height: 1.6;
+  }
+
+  /* HEADER */
+  header {
+    background: var(--blanco);
+    border-bottom: 3px solid var(--naranja);
+    padding: 10px 24px 14px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: sticky;
+    top: 0;
+    z-index: 50;
+  }
+
+  header img {
+    height: 90px;
+    max-width: 100%;
+    object-fit: contain;
+  }
+
+  header .division {
+    margin-top: 6px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--gris-oscuro);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    text-align: center;
+  }
+
+  /* HERO */
+  .hero {
+    background: linear-gradient(135deg, #1a1a1a 0%, #3a3a3a 100%);
+    color: var(--blanco);
+    text-align: center;
+    padding: 48px 24px 40px;
+  }
+
+  .hero h1 {
+    font-size: clamp(1.8rem, 4vw, 2.6rem);
+    font-weight: 800;
+    letter-spacing: 0.01em;
+    margin-bottom: 10px;
+  }
+
+  .hero .subt {
+    color: var(--naranja);
+    font-weight: 700;
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 18px;
+  }
+
+  .hero p {
+    max-width: 720px;
+    margin: 0 auto;
+    font-size: clamp(1rem, 2.5vw, 1.1rem);
+    line-height: 1.75;
+    color: #e0e0e0;
+  }
+
+  .uvm-strip {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 14px;
+    margin-top: 28px;
+  }
+
+  .uvm-chip {
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(229,90,0,0.5);
+    border-radius: 10px;
+    padding: 10px 20px;
+    min-width: 150px;
+  }
+
+  .uvm-chip .lbl {
+    display: block;
+    font-size: 0.72rem;
+    color: #bbb;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-bottom: 4px;
+  }
+
+  .uvm-chip .val {
+    display: block;
+    font-size: 1.15rem;
+    font-weight: 800;
+    color: var(--blanco);
+  }
+
+  /* MAIN */
+  main {
+    max-width: 880px;
+    margin: 0 auto;
+    padding: 48px 24px 80px;
+  }
+
+  section.parte { margin-bottom: 56px; }
+
+  .parte-title {
+    font-size: 1.6rem;
+    color: var(--naranja);
+    margin-bottom: 8px;
+    font-weight: 800;
+    letter-spacing: 0.02em;
+  }
+
+  .parte-kicker {
+    font-size: 0.8rem;
+    color: var(--gris-medio);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 20px;
+    font-weight: 600;
+  }
+
+  h3.art-title {
+    font-size: 1.1rem;
+    color: var(--gris-oscuro);
+    margin: 28px 0 10px;
+    font-weight: 700;
+  }
+
+  p.body-text { margin-bottom: 12px; font-size: 0.96rem; color: var(--gris-oscuro); }
+
+  .info-box {
+    background: var(--gris-claro);
+    border-left: 4px solid var(--naranja);
+    padding: 18px 20px;
+    margin-bottom: 24px;
+    border-radius: 0 8px 8px 0;
+    font-size: 0.95rem;
+    line-height: 1.7;
+    color: var(--gris-oscuro);
+  }
+
+  .note {
+    font-size: 0.85rem;
+    font-style: italic;
+    color: var(--gris-medio);
+    background: #fafafa;
+    border: 1px dashed #ddd;
+    border-radius: 6px;
+    padding: 10px 14px;
+    margin: 12px 0;
+  }
+
+  /* TABLES */
+  .table-wrap { overflow-x: auto; margin: 16px 0 20px; border-radius: 8px; border: 1px solid #eee; }
+  table { width: 100%; border-collapse: collapse; font-size: 0.88rem; min-width: 420px; }
+  thead th {
+    background: var(--gris-oscuro);
+    color: var(--blanco);
+    text-align: left;
+    padding: 10px 14px;
+    font-weight: 600;
+    white-space: nowrap;
+  }
+  tbody td { padding: 9px 14px; border-bottom: 1px solid #eee; }
+  tbody tr:nth-child(even) td { background: var(--gris-claro); }
+  tbody tr:last-child td { border-bottom: none; }
+  td.num, th.num { text-align: center; }
+
+  /* FORMULA BOX */
+  .formula-box {
+    background: #fff;
+    border: 1px solid #e5e5e5;
+    border-left: 4px solid var(--naranja);
+    padding: 16px 20px;
+    text-align: center;
+    font-weight: 700;
+    color: var(--gris-oscuro);
+    border-radius: 0 8px 8px 0;
+    margin: 18px 0;
+    font-size: 1.02rem;
+  }
+
+  /* TOC / INDEX */
+  .toc-controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    align-items: center;
+    margin-bottom: 18px;
+  }
+
+  #buscador {
+    flex: 1 1 220px;
+    padding: 11px 16px;
+    border: 1px solid #ddd;
+    border-radius: 24px;
+    font-size: 0.92rem;
+    font-family: inherit;
+    color: var(--gris-oscuro);
+    outline: none;
+    transition: border-color .2s, box-shadow .2s;
+  }
+  #buscador:focus { border-color: var(--naranja); box-shadow: 0 0 0 3px rgba(229,90,0,0.12); }
+
+  .ctrl-btn {
+    background: var(--blanco);
+    border: 1px solid #ddd;
+    color: var(--gris-oscuro);
+    padding: 10px 16px;
+    border-radius: 24px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: background .2s, color .2s, border-color .2s;
+  }
+  .ctrl-btn:hover { background: var(--naranja); border-color: var(--naranja); color: #fff; }
+
+  .toc-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 8px;
+    margin-bottom: 32px;
+  }
+
+  .toc-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--gris-claro);
+    border: 1px solid transparent;
+    border-radius: 8px;
+    padding: 10px 12px;
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--gris-oscuro);
+    text-decoration: none;
+    cursor: pointer;
+    transition: background .2s, border-color .2s, color .2s;
+  }
+  .toc-item:hover { background: var(--naranja-suave); border-color: var(--naranja); color: var(--naranja); }
+  .toc-item .n { color: var(--naranja); font-weight: 800; flex-shrink: 0; }
+
+  /* RUBRO ACCORDION (based on site's FAQ details/summary pattern) */
+  .rubro-list { display: flex; flex-direction: column; gap: 12px; }
+
+  details.rubro {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+    transition: box-shadow 0.2s;
+    scroll-margin-top: 90px;
+  }
+
+  details.rubro[open] { box-shadow: 0 2px 12px rgba(229, 90, 0, 0.14); }
+
+  summary {
+    cursor: pointer;
+    list-style: none;
+    padding: 16px 20px;
+    font-weight: 700;
+    font-size: 0.95rem;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    background: var(--gris-claro);
+    color: var(--gris-oscuro);
+    transition: background 0.2s;
+  }
+  summary::-webkit-details-marker { display: none; }
+
+  .rubro-badge {
+    background: var(--naranja);
+    color: #fff;
+    padding: 3px 11px;
+    border-radius: 12px;
+    font-size: 0.72rem;
+    font-weight: 800;
+    flex-shrink: 0;
+    letter-spacing: 0.03em;
+  }
+
+  summary .rubro-name { flex: 1; }
+
+  summary::after {
+    content: '+';
+    font-size: 1.5rem;
+    color: var(--naranja);
+    font-weight: 400;
+    flex-shrink: 0;
+    transition: transform 0.25s;
+    line-height: 1;
+  }
+  details[open] summary::after { transform: rotate(45deg); }
+  details[open] summary { background: var(--naranja-suave); color: var(--naranja); }
+  details[open] summary .rubro-badge { background: var(--gris-oscuro); }
+
+  .rubro-body {
+    padding: 18px 20px 22px;
+    font-size: 0.93rem;
+    line-height: 1.7;
+    color: var(--gris-oscuro);
+    border-top: 1px solid #eee;
+    background: var(--blanco);
+  }
+  .rubro-body .comprende { color: var(--gris-medio); margin-bottom: 4px; }
+  .rubro-body .comprende strong { color: var(--gris-oscuro); }
+
+  .oculto { display: none !important; }
+
+  /* CONTACT / FOOTER */
+  .contact-section { margin-top: 8px; text-align: center; }
+  .contact-section p { font-size: 0.92rem; color: var(--gris-medio); margin-bottom: 4px; }
+  .contact-section a { color: var(--naranja); text-decoration: none; font-weight: 600; }
+
+  footer {
+    background: #1a1a1a;
+    color: #888;
+    text-align: center;
+    padding: 24px 24px;
+    font-size: 0.82rem;
+  }
+  footer p { margin-bottom: 4px; }
+  footer a { color: #bbb; text-decoration: none; }
+
+  @media (max-width: 600px) {
+    .hero { padding: 36px 20px 32px; }
+    main { padding: 36px 16px 80px; }
+    .toc-grid { grid-template-columns: 1fr 1fr; }
+    header img { height: 64px; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <img src="data:image/png;base64,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" alt="AADI Gestora">
+  <div class="division">División Recaudaciones de AADI SGC</div>
+</header>
+
+<section class="hero">
+  <div class="subt">Sociedad de Gestión Colectiva</div>
+  <h1>Aranceles 2026</h1>
+  <p>Esquema de aranceles aplicable a la comunicación pública de fonogramas, vigente para el período mayo–agosto de 2026. Los valores se actualizan cuatrimestralmente conforme al IPC-INDEC.</p>
+  <div class="uvm-strip">
+    <div class="uvm-chip"><span class="lbl">Vigencia</span><span class="val">Mayo – Agosto 2026</span></div>
+    <div class="uvm-chip"><span class="lbl">UVM (Unidad de Valor de la Música)</span><span class="val">$ 600</span></div>
+    <div class="uvm-chip"><span class="lbl">Próxima actualización</span><span class="val">Septiembre 2026</span></div>
+  </div>
+</section>
+
+<main>
+
+  <section class="parte" id="parte-1">
+    <div class="parte-kicker">Parte I</div>
+    <h2 class="parte-title">Marco general</h2>
+
+    <h3 class="art-title">1. Fundamento y alcance</h3>
+    <p class="body-text">La comunicación al público de fonogramas en establecimientos y como parte de actividades de distinta naturaleza constituye una forma de explotación de los derechos conexos reconocidos por la Ley 11.723 de Propiedad Intelectual y los tratados internacionales ratificados por la República Argentina, en especial la Convención de Roma de 1961 y el Tratado de la OMPI sobre Interpretación o Ejecución y Fonogramas (WPPT).</p>
+    <p class="body-text">Los artistas intérpretes y ejecutantes tienen derecho a percibir una remuneración equitativa por cada acto de comunicación pública de sus interpretaciones fijadas en fonogramas. AADI, como entidad de gestión colectiva autorizada por la autoridad de aplicación, es quien se encuentra a cargo de la administración, recaudación y distribución de las regalías correspondientes para sus representados.</p>
+    <p class="body-text">El presente esquema establece los aranceles aplicables a los distintos tipos de usuarios y actividades, con arreglo a criterios de proporcionalidad, transparencia y equidad. Su estructura busca que el monto a abonar por cada usuario sea razonable y coherente con la importancia y el papel que cumple la música en su actividad y con la realidad económica de su entorno.</p>
+    <div class="info-box">No obstante lo expuesto, y sin perjuicio de los aranceles aquí establecidos, AADI se encuentra facultada para celebrar acuerdos particulares con usuarios o cámaras sectoriales, de conformidad con la normativa vigente.</div>
+
+    <h3 class="art-title">2. Unidad de Valor de la Música (UVM)</h3>
+    <p class="body-text">Como referencia común para el cálculo del arancel a abonar en distintos rubros, se establece la Unidad de Valor de la Música (UVM), fijada en <strong>$ 600.- (pesos seiscientos)</strong> para el período mayo–agosto de 2026.</p>
+    <p class="body-text">La UVM se actualizará cuatrimestralmente —en los meses de enero, mayo y septiembre de cada año— conforme a la variación acumulada del Índice de Precios al Consumidor (IPC) oficial publicado por el INDEC. Si en el curso de un cuatrimestre el IPC acumulara una variación superior al 10%, la actualización podrá adelantarse, sin que ello requiera la modificación formal del presente reglamento.</p>
+    <p class="body-text">La UVM permite mantener los valores arancelarios en términos reales a lo largo del tiempo, dotando al sistema de previsibilidad tanto para los usuarios como para la entidad recaudadora.</p>
+
+    <h3 class="art-title">3. Coeficiente de Uso Musical</h3>
+    <p class="body-text">Con el propósito de que cada usuario contribuya en proporción al lugar que ocupa la música en su propuesta comercial, se establece un <strong>Coeficiente de Uso Musical</strong>. Este factor pondera la intensidad y el rol de la música dentro de cada tipo de negocio y debe ser declarado por el propio usuario al solicitar la licencia.</p>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th class="num">Coef.</th><th>Denominación</th><th>Descripción</th></tr></thead>
+        <tbody>
+          <tr><td class="num">1,0</td><td>Música Incidental</td><td>Ambientación de fondo. La música es prescindible sin afectar la percepción central del servicio.</td></tr>
+          <tr><td class="num">1,5</td><td>Música Identitaria</td><td>Refuerzo de identidad. La música está seleccionada para coincidir con el perfil del establecimiento.</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="note">Nota: en caso de duda sobre el nivel aplicable, el usuario deberá optar por el coeficiente inmediatamente superior. AADI verificará la correcta autoclasificación mediante inspección o auditoría. La declaración de un coeficiente inferior al correspondiente dará lugar a reliquidación con más los intereses que correspondan.</div>
+
+    <h3 class="art-title">4. Coeficiente Territorial</h3>
+    <p class="body-text">A efectos de garantizar equidad, la tarifa se modifica conforme a la escala poblacional de la ciudad o localidad donde opere el establecimiento, a partir de la aplicación de un <strong>Coeficiente Territorial</strong>. El usuario deberá acreditar la escala poblacional mediante el último censo oficial del INDEC o certificado emitido por autoridad competente. A falta de acreditación, se aplicará por defecto el coeficiente 1,25.</p>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th class="num">Coef. Territorial</th><th>Escala poblacional</th><th>Ejemplos</th></tr></thead>
+        <tbody>
+          <tr><td class="num">1,25</td><td>Más de 500.000 habitantes</td><td>Buenos Aires, Córdoba, Rosario, Mendoza, La Plata.</td></tr>
+          <tr><td class="num">1,00</td><td>Entre 50.000 y 500.000 habitantes</td><td>Mar del Plata, Tucumán, Salta, Santa Fe, Neuquén.</td></tr>
+          <tr><td class="num">0,75</td><td>Menos de 50.000 habitantes</td><td>Localidades del interior y zonas rurales.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="parte" id="parte-2">
+    <div class="parte-kicker">Parte II</div>
+    <h2 class="parte-title">Aranceles por rubro</h2>
+    <p class="body-text" style="margin-bottom:20px;">Buscá tu actividad o navegá el listado completo de los 27 rubros. Cada uno detalla la fórmula de cálculo y las condiciones particulares aplicables.</p>
+
+    <div class="toc-controls">
+      <input type="text" id="buscador" placeholder="Buscar rubro (ej: gastronomía, hotel, radio...)">
+      <button class="ctrl-btn" id="btn-expandir">Expandir todos</button>
+      <button class="ctrl-btn" id="btn-colapsar">Colapsar todos</button>
+    </div>
+
+    <div class="toc-grid" id="toc-grid"></div>
+
+    <div class="rubro-list" id="rubro-list">
+
+      <details class="rubro" id="rubro-01" data-nombre="gastronomía restaurantes confiterías bares pizzerías fast food">
+        <summary><span class="rubro-badge">01</span><span class="rubro-name">Gastronomía</span></summary>
+        <div class="rubro-body">
+          <p class="comprende"><strong>Comprende:</strong> restaurantes, confiterías, bares, pizzerías, fast food, tenedores libres, locales de comida rápida, heladerías con cafetería, espacios gastronómicos en estaciones de servicio y establecimientos similares.</p>
+          <div class="formula-box">Arancel = 0,70% de los Ingresos Brutos</div>
+          <p class="body-text">Cuando el establecimiento incorpore espectáculo, show en vivo y/o derecho a baile de carácter accesorio (no como actividad principal), el arancel se eleva al <strong>1,40%</strong> de los Ingresos Brutos.</p>
+        </div>
+      </details>
+
+      <details class="rubro" id="rubro-02" data-nombre="pubs whiskerías clubes nocturnos cabarets karaoke">
+        <summary><span class="rubro-badge">02</span><span class="rubro-name">Pubs, whiskerías y clubes nocturnos (sin derecho a baile)</span></summary>
+        <div class="rubro-body">
+          <p class="comprende"><strong>Comprende:</strong> pubs, whiskerías, cabarets, clubes nocturnos, karaoke y similares que no contemplen derecho a baile.</p>
+          <div class="formula-box">Arancel = 1,40% de los Ingresos Brutos</div>
+        </div>
+      </details>
+
+      <details class="rubro" id="rubro-03" data-nombre="locales bailables discotecas milongas">
+        <summary><span class="rubro-badge">03</span><span class="rubro-name">Locales bailables</span></summary>
+        <div class="rubro-body">
+          <p class="comprende"><strong>Comprende:</strong> discotecas, milongas, locales bailables y similares.</p>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Modalidad</th><th>Arancel por apertura</th></tr></thead>
+              <tbody>
+                <tr><td>Con show en vivo</td><td>2 entradas y/o su proporcional cada 100 personas habilitadas</td></tr>
+                <tr><td>Sin show en vivo</td><td>4 entradas y/o su proporcional cada 100 personas habilitadas</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="note">En caso de no existir cobro de entrada, se tomará como referencia análoga el precio de entrada de un local de similares características. El valor de la entrada se entenderá sin deducciones de ninguna naturaleza (impuestos, servicios, etc.) y corresponderá al precio más elevado establecido.</div>
+        </div>
+      </details>
+
+      <details class="rubro" id="rubro-04" data-nombre="locales comerciales indumentaria calzado joyería perfumería óptica librería electrónica computación telefonía ferretería bazar lavandería peluquería veterinaria farmacia panadería carnicería">
+        <summary><span class="rubro-badge">04</span><span class="rubro-name">Locales comerciales</span></summary>
+        <div class="rubro-body">
+          <p class="comprende"><strong>Comprende:</strong> comercios en general (indumentaria, calzado, joyería, perfumería, óptica, librería, electrónica, computación, telefonía, ferretería, bazar, lavandería, peluquería, veterinaria, farmacia, panadería, carnicería, fiambrería, heladería sin cafetería, agencias de lotería, edificios administrativos, bancos, oficinas y similares).</p>
+          <div class="formula-box">Arancel mensual = m² × UVM × Coef. Territorial × Coef. de Uso</div>
+          <p class="body-text">Los coeficientes aplicables son los establecidos en los puntos 3 y 4 de la Parte I. El Coeficiente de Uso se aplica entre los distintos comercios del siguiente modo:</p>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th class="num">Coef. de Uso</th><th>Ejemplos</th></tr></thead>
+              <tbody>
+                <tr><td class="num">1,0</td><td>Ferreterías, Lavandería, Tintorería, Talleres de Mecánica, Gomerías, Venta de Repuestos, Panaderías, Carnicerías, Fiambrerías, Pescaderías, Verdulerías, Agencias de Lotería.</td></tr>
+                <tr><td class="num">1,5</td><td>Indumentaria, Calzado, Lencería, Corsetería, Marroquinería, Joyería, Bisutería, Relojería, Perfumerías, Ópticas, Librerías, Jugueterías, Disquerías, Decoración, Mueblería, Colchonería, Artículos del Hogar, Artículos Electrónicos, Artículos de Audio y Video, Artículos de Computación, Artículos de Telefonía, Artículos de Limpieza, Bazar, Mercerías, Maxikiosco, Peluquerías, Veterinaria, Tienda de Mascotas, Farmacias, Cotillón, Heladerías (sin cafetería), Edificios Administrativos (Bancos, Oficinas, etc.).</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </details>
+
+      <details class="rubro" id="rubro-05" data-nombre="supermercados autoservicios">
+        <summary><span class="rubro-badge">05</span><span class="rubro-name">Supermercados</span></summary>
+        <div class="rubro-body">
+          <p class="comprende"><strong>Comprende:</strong> supermercados, autoservicios y establecimientos similares.</p>
+          <div class="formula-box">Arancel mensual = m² × UVM × Coef. Territorial</div>
+        </div>
+      </details>
+
+      <details class="rubro" id="rubro-06" data-nombre="galerías centros comerciales shoppings">
+        <summary><span class="rubro-badge">06</span><span class="rubro-name">Galerías y centros comerciales</span></summary>
+        <div class="rubro-body">
+          <p class="comprende"><strong>Comprende:</strong> galerías comerciales, centros comerciales, shoppings y establecimientos similares.</p>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Tipo de espacio</th><th>Arancel mensual</th></tr></thead>
+              <tbody>
+                <tr><td>Espacios comunes</td><td>4 UVM por local, por cantidad de locales</td></tr>
+                <tr><td>Patio de comidas</td><td>50 UVM por local, por cantidad de locales del patio de comidas</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="body-text">Cuando los locales que integran el establecimiento realicen difusión propia —distinta a la provista centralmente— abonarán adicionalmente la tarifa correspondiente al rubro de su actividad.</p>
+        </div>
+      </details>
+
+      <details class="rubro" id="rubro-07" data-nombre="casinos bingos salas de juego hipódromos">
+        <summary><span class="rubro-badge">07</span><span class="rubro-name">Casinos, bingos y salas de juego</span></summary>
+        <div class="rubro-body">
+          <p class="comprende"><strong>Comprende:</strong> casinos, bingos, salas de juego, hipódromos y similares.</p>
+          <div class="formula-box">Arancel mensual = m² habilitados al público × UVM × Coef. Territorial</div>
+        </div>
+      </details>
+
+      <details class="rubro" id="rubro-08" data-nombre="hotelería alojamiento hoteles moteles cabañas camping glamping">
+        <summary><span class="rubro-badge">08</span><span class="rubro-name">Hotelería y alojamiento</span></summary>
+        <div class="rubro-body">
+          <p class="comprende"><strong>Comprende:</strong> hoteles, moteles, apart hoteles, hosterías, albergues, cabañas, glamping, tiempo compartido, inmuebles residenciales de ocupación temporaria, campings y similares.</p>
+          <div class="formula-box">Arancel mensual = Valor habitación doble estándar × Coef. Tamaño</div>
+          <p class="body-text">El valor de referencia de la habitación es el precio oficial registrado en la Secretaría de Turismo provincial o el precio de mostrador (impuestos incluidos), con independencia de tarifas ofrecidas a través de plataformas u otros canales.</p>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th class="num">Coef. Tamaño</th><th>Cantidad de habitaciones</th></tr></thead>
+              <tbody>
+                <tr><td class="num">1,50</td><td>Más de 101 habitaciones</td></tr>
+                <tr><td class="num">1,25</td><td>Entre 51 y 100 habitaciones</td></tr>
+                <tr><td class="num">1,00</td><td>Entre 31 y 50 habitaciones</td></tr>
+                <tr><td class="num">0,75</td><td>Hasta 30 habitaciones</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="body-text">En temporada baja, la tarifa se reduce en un <strong>50%</strong>. Los espacios complementarios del establecimiento (lobby, restaurante, gimnasio, piscina, salón de eventos, bares, etc.) abonan aparte conforme al rubro que corresponda.</p>
+          <div class="note">Los campings abonan mensualmente el equivalente al alquiler mensual de 3 (tres) carpas.</div>
+        </div>
+      </details>
+
+      <details class="rubro" id="rubro-09" data-nombre="clínicas establecimientos de salud sanatorios hospitales geriátricos odontológicas estética">
+        <summary><span class="rubro-badge">09</span><span class="rubro-name">Clínicas y establecimientos de salud</span></summary>
+        <div class="rubro-body">
+          <p class="comprende"><strong>Comprende:</strong> clínicas, sanatorios, hospitales privados, centros médicos y de diagnóstico, centros de rehabilitación, geriátricos, residencias de adultos mayores, clínicas odontológicas, clínicas de estética y cirugía, y similares.</p>
+          <div class="formula-box">Arancel mensual = 10 UVM × cantidad de habitaciones o unidades con difusión</div>
+        </div>
+      </details>
+
+      <details class="rubro" id="rubro-10" data-nombre="eventos sociales empresariales fiestas bodas cumpleaños">
+        <summary><span class="rubro-badge">10</span><span class="rubro-name">Eventos sociales y empresariales</span></summary>
+        <div class="rubro-body">
+          <p class="comprende"><strong>Comprende:</strong> fiestas, eventos, recepciones, desfiles, bodas, aniversarios, cumpleaños, fiestas infantiles y similares.</p>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Modalidad del evento</th><th>Arancel</th></tr></thead>
+              <tbody>
+                <tr><td>Con derecho a baile</td><td>3% del costo total del evento</td></tr>
+                <tr><td>Sin derecho a baile</td><td>1,5% del costo total del evento</td></tr>
+                <tr><td>Salones de fiestas infantiles (exclusivo)</td><td>1,5 × valor de alquiler del salón para un evento</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="body-text">El costo total del evento incluye: locación del salón, catering, disc-jockey y todos los adicionales contratados.</p>
+        </div>
+      </details>
+
+      <details class="rubro" id="rubro-11" data-nombre="exposiciones muestras ferias stands kioscos">
+        <summary><span class="rubro-badge">11</span><span class="rubro-name">Exposiciones, muestras y ferias</span></summary>
+        <div class="rubro-body">
+          <p class="comprende"><strong>Comprende:</strong> exposiciones, muestras, ferias, stands, kioscos y puestos en exposición o feria, y similares.</p>
+          <div class="formula-box">Arancel = (m² / 10) × UVM × Coef. Territorial</div>
+          <p class="body-text">Si la exposición o feria incluye show en vivo, se abonará adicionalmente el arancel del Rubro 14. Las ferias de carácter benéfico gozarán de una reducción del 50% sobre el arancel precedente.</p>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Difusión en local / stand</th><th>Arancel por día</th></tr></thead>
+              <tbody>
+                <tr><td>Local de hasta 25 m²</td><td>20 UVM por día</td></tr>
+                <tr><td>Local de 26 a 50 m²</td><td>35 UVM por día</td></tr>
+                <tr><td>Local mayor a 51 m²</td><td>70 UVM por día</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </details>
+
+      <details class="rubro" id="rubro-12" data-nombre="fiestas populares festivales peñas corsos domas">
+        <summary><span class="rubro-badge">12</span><span class="rubro-name">Fiestas populares, festivales y peñas</span></summary>
+        <div class="rubro-body">
+          <p class="comprende"><strong>Comprende:</strong> fiestas populares, festivales, peñas, corsos, domas y similares.</p>
+          <div class="formula-box">Arancel = 4% de los Ingresos Brutos</div>
+          <p class="body-text">Por ingresos brutos se entiende a los ingresos generados por venta de entradas y/o derechos de acceso, publicidad, etc. En caso de ingreso gratuito, se tomará como referencia el precio de una entrada de evento de similares características.</p>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Tipo de local / stand interno</th><th>Arancel por día</th></tr></thead>
+              <tbody>
+                <tr><td>Local de hasta 25 m²</td><td>20 UVM por día</td></tr>
+                <tr><td>Local de 26 a 50 m²</td><td>35 UVM por día</td></tr>
+                <tr><td>Local mayor a 51 m²</td><td>70 UVM por día</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </details>
+
+      <details class="rubro" id="rubro-13" data-nombre="eventos deportivos estadios">
+        <summary><span class="rubro-badge">13</span><span class="rubro-name">Eventos deportivos en estadios</span></summary>
+        <div class="rubro-body">
+          <p class="comprende"><strong>Comprende:</strong> eventos deportivos en estadios y similares.</p>
+          <div class="formula-box">Arancel = 1‰ (uno por mil) de los Ingresos Brutos</div>
+          <p class="body-text">Por ingresos brutos se entiende a los ingresos generados por venta de entradas y/o derechos de acceso, publicidad, etc.</p>
+        </div>
+      </details>
+
+      <details class="rubro" id="rubro-14" data-nombre="recitales conciertos espectáculos">
+        <summary><span class="rubro-badge">14</span><span class="rubro-name">Recitales y conciertos</span></summary>
+        <div class="rubro-body">
+          <p class="comprende"><strong>Comprende:</strong> recitales, conciertos y espectáculos similares.</p>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Tipo de uso musical</th><th>Arancel s/ Ingresos Brutos</th></tr></thead>
+              <tbody>
+                <tr><td>Música dentro del espectáculo</td><td>0,70%</td></tr>
+                <tr><td>Música antes o después del espectáculo</td><td>0,50%</td></tr>
+                <tr><td>Uso combinado (dentro y fuera)</td><td>1,00%</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="body-text">Por ingresos brutos se entiende a los ingresos generados por venta de entradas y/o derechos de acceso, publicidad, etc.</p>
+        </div>
+      </details>
+
+      <details class="rubro" id="rubro-15" data-nombre="carreras maratones participación masiva">
+        <summary><span class="rubro-badge">15</span><span class="rubro-name">Carreras y maratones</span></summary>
+        <div class="rubro-body">
+          <p class="comprende"><strong>Comprende:</strong> carreras, maratones y eventos similares de participación masiva.</p>
+          <div class="formula-box">Arancel = 0,5% × cantidad de inscriptos × costo de inscripción</div>
+          <p class="body-text">Si el evento es de carácter benéfico, la tarifa se reduce en un 50%.</p>
+        </div>
+      </details>
+
+      <details class="rubro" id="rubro-16" data-nombre="clubes instalaciones deportivas sociales">
+        <summary><span class="rubro-badge">16</span><span class="rubro-name">Clubes e instalaciones deportivas</span></summary>
+        <div class="rubro-body">
+          <p class="comprende"><strong>Comprende:</strong> clubes sociales y deportivos, instalaciones deportivas, entidades de esparcimiento y similares.</p>
+          <div class="formula-box">Arancel mensual = 0,5% × cantidad de socios × cuota social</div>
+        </div>
+      </details>
+
+      <details class="rubro" id="rubro-17" data-nombre="teatros cines centros culturales salas de espectáculo">
+        <summary><span class="rubro-badge">17</span><span class="rubro-name">Teatros y cines</span></summary>
+        <div class="rubro-body">
+          <p class="comprende"><strong>Comprende:</strong> teatros, cines, centros culturales, salas de espectáculo y similares.</p>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Tipo de uso musical</th><th>Arancel por función</th></tr></thead>
+              <tbody>
+                <tr><td>Música dentro del espectáculo</td><td>1,5 platea por función</td></tr>
+                <tr><td>Música antes / durante intervalos / después</td><td>1 platea por función</td></tr>
+                <tr><td>Uso combinado (dentro y fuera)</td><td>2 plateas por función</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </details>
+
+      <details class="rubro" id="rubro-18" data-nombre="gimnasios academias de baile crossfit pilates yoga spa">
+        <summary><span class="rubro-badge">18</span><span class="rubro-name">Gimnasios y academias de baile</span></summary>
+        <div class="rubro-body">
+          <p class="comprende"><strong>Comprende:</strong> gimnasios, academias de baile, crossfit, funcional, pilates, yoga, entrenamiento HIIT, escuelas deportivas, spa y similares.</p>
+          <div class="formula-box">Arancel mensual = 1% × cantidad de socios × cuota social × Coef. Territorial</div>
+        </div>
+      </details>
+
+      <details class="rubro" id="rubro-19" data-nombre="balnearios esparcimiento costero carpas">
+        <summary><span class="rubro-badge">19</span><span class="rubro-name">Balnearios</span></summary>
+        <div class="rubro-body">
+          <p class="comprende"><strong>Comprende:</strong> balnearios y establecimientos similares de esparcimiento costero.</p>
+          <div class="formula-box">Arancel mensual = Valor de alquiler mensual de 3 carpas</div>
+        </div>
+      </details>
+
+      <details class="rubro" id="rubro-20" data-nombre="piletas canchas pistas deportivas natación paddle tenis bowling">
+        <summary><span class="rubro-badge">20</span><span class="rubro-name">Piletas, canchas y pistas deportivas</span></summary>
+        <div class="rubro-body">
+          <p class="comprende"><strong>Comprende:</strong> piletas de natación, parques acuáticos, pistas de hielo, canchas de fútbol, paddle y tenis de alquiler, bowlings, pistas deportivas al aire libre y similares.</p>
+          <div class="formula-box">Arancel mensual = m² del predio × UVM × Coef. Territorial</div>
+          <p class="body-text">Si el espacio incorpora otros usos (espectáculos, gastronomía, etc.), estos abonan además el arancel del rubro correspondiente.</p>
+        </div>
+      </details>
+
+      <details class="rubro" id="rubro-21" data-nombre="circos parques de diversiones salas de escape">
+        <summary><span class="rubro-badge">21</span><span class="rubro-name">Circos y parques de diversiones</span></summary>
+        <div class="rubro-body">
+          <p class="comprende"><strong>Comprende:</strong> circos, parques de diversiones, salas de escape y similares.</p>
+          <div class="formula-box">Arancel = 1% de los Ingresos Brutos</div>
+          <p class="body-text">Por ingresos brutos se entiende a los ingresos generados por venta de entradas y/o derechos de acceso, publicidad, etc.</p>
+        </div>
+      </details>
+
+      <details class="rubro" id="rubro-22" data-nombre="fonolas tragamonedas tocadiscos reproducción musical onerosa">
+        <summary><span class="rubro-badge">22</span><span class="rubro-name">Fonolas, tragamonedas y tocadiscos</span></summary>
+        <div class="rubro-body">
+          <p class="comprende"><strong>Comprende:</strong> fonolas, tragamonedas, tocadiscos y dispositivos similares de reproducción musical onerosa.</p>
+          <div class="formula-box">Arancel mensual = 40 fichas y/o su equivalente económico por unidad</div>
+        </div>
+      </details>
+
+      <details class="rubro" id="rubro-23" data-nombre="medios de transporte estaciones ómnibus trenes subtes aeronaves barcos cruceros">
+        <summary><span class="rubro-badge">23</span><span class="rubro-name">Medios de transporte y estaciones</span></summary>
+        <div class="rubro-body">
+          <p class="comprende"><strong>Comprende:</strong> ómnibus urbanos y de larga distancia, trenes, subtes, aeronaves, barcos, cruceros, y sus respectivas estaciones (terminales, aeropuertos, estaciones ferroviarias y de subterráneo).</p>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Tipo de unidad</th><th>Arancel mensual por vehículo / unidad</th></tr></thead>
+              <tbody>
+                <tr><td>Ómnibus urbano / corta distancia</td><td>2,5 UVM × capacidad habilitada de pasajeros</td></tr>
+                <tr><td>Ómnibus media / larga distancia</td><td>5 UVM × capacidad habilitada de pasajeros</td></tr>
+                <tr><td>Trenes y subtes (por vagón en servicio)</td><td>5 UVM × capacidad habilitada de pasajeros</td></tr>
+                <tr><td>Aeronaves (por aeronave en servicio)</td><td>5 UVM × capacidad habilitada de pasajeros</td></tr>
+                <tr><td>Barcos (por barco en servicio)</td><td>5 UVM × capacidad habilitada de pasajeros</td></tr>
+                <tr><td>Cruceros</td><td>1 UVM × cantidad de pasajeros, por cada recalada en puerto local</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="body-text">Las estaciones de ómnibus, ferrocarril, subterráneo y aeropuertos abonan: m² habilitados a pasajeros × UVM × Coef. Territorial.</p>
+          <div class="note">Las cafeterías, locales comerciales y de esparcimiento dentro de las unidades o estaciones abonan adicionalmente la tarifa correspondiente a su rubro.</div>
+        </div>
+      </details>
+
+      <details class="rubro" id="rubro-24" data-nombre="medios de comunicación música ambiental radio televisión cable">
+        <summary><span class="rubro-badge">24</span><span class="rubro-name">Medios de comunicación y música ambiental</span></summary>
+        <div class="rubro-body">
+          <p class="comprende"><strong>Comprende:</strong> radios comerciales y no comerciales, canales de televisión abierta, televisión por suscripción (cable), empresas de música ambiental y similares.</p>
+          <p class="body-text">Cuando la alícuota se aplique sobre "ingresos brutos" se entenderá que estos comprenden todos los ingresos brutos por publicidad y venta de espacios. Por "difusión musical" se hace referencia al porcentaje de difusión de obras musicales respecto del total de la programación de la emisora.</p>
+
+          <h3 class="art-title" style="margin-top:20px;">a) Radio comercial de alta potencia</h3>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Difusión musical</th><th>Alícuota s/ ingresos brutos</th><th>Mínimo mensual</th></tr></thead>
+              <tbody>
+                <tr><td>90% a 100%</td><td>0,60%</td><td>24 UVM</td></tr>
+                <tr><td>75% a 90%</td><td>0,54%</td><td>21 UVM</td></tr>
+                <tr><td>50% a 75%</td><td>0,48%</td><td>18 UVM</td></tr>
+                <tr><td>30% a 50%</td><td>0,36%</td><td>14 UVM</td></tr>
+                <tr><td>15% a 30%</td><td>0,24%</td><td>10 UVM</td></tr>
+                <tr><td>0% a 15%</td><td>0,12%</td><td>6 UVM</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h3 class="art-title">b) Radio comercial de baja potencia</h3>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Difusión musical</th><th>Alícuota s/ ingresos brutos</th><th>Mínimo mensual</th></tr></thead>
+              <tbody>
+                <tr><td>90% a 100%</td><td>0,30%</td><td>12 UVM</td></tr>
+                <tr><td>75% a 90%</td><td>0,27%</td><td>10 UVM</td></tr>
+                <tr><td>50% a 75%</td><td>0,24%</td><td>9 UVM</td></tr>
+                <tr><td>30% a 50%</td><td>0,18%</td><td>7 UVM</td></tr>
+                <tr><td>15% a 30%</td><td>0,12%</td><td>5 UVM</td></tr>
+                <tr><td>0% a 15%</td><td>0,06%</td><td>3 UVM</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h3 class="art-title">c) Radios no comerciales (comunitarias, universitarias, estatales)</h3>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Difusión musical</th><th>Arancel mensual</th></tr></thead>
+              <tbody>
+                <tr><td>90% a 100%</td><td>20 UVM</td></tr>
+                <tr><td>75% a 90%</td><td>18 UVM</td></tr>
+                <tr><td>0% a 75%</td><td>15 UVM</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h3 class="art-title">d) Televisión abierta y televisión por suscripción</h3>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Tipo de medio</th><th>Alícuota s/ ingresos brutos</th><th>Mínimo mensual</th></tr></thead>
+              <tbody>
+                <tr><td>Televisión abierta</td><td>0,30%</td><td>25 UVM</td></tr>
+                <tr><td>Televisión por suscripción</td><td>0,30%</td><td>25 UVM</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="body-text">La alícuota se aplica sobre los ingresos brutos por publicidad y venta de espacios (TV abierta) o sobre los ingresos brutos por provisión de contenidos audiovisuales, excluyendo servicios técnicos, de instalación, alquiler de equipos y similares (TV por suscripción).</p>
+
+          <h3 class="art-title">e) Empresas de música ambiental</h3>
+          <div class="formula-box">Arancel mensual = 3% de los Ingresos Brutos por provisión del servicio musical</div>
+          <p class="body-text">Pagarán mensualmente una suma equivalente al 3% de los ingresos brutos derivados de la provisión de música prestados a sus abonados, deducidos los derivados de servicios técnicos de conexión y equipos.</p>
+
+          <div class="note">Los aranceles establecidos en la totalidad del Rubro 24 son independientes de los que deban abonar los usuarios de otros rubros que difundan la música recibida a través de este servicio. A los fines de la aplicación del arancel sobre los ingresos brutos, los usuarios deberán presentar Declaración Jurada de ingresos; AADI se reserva el derecho de auditar la contabilidad del declarante. Los pagos mínimos no reemplazan la entrega de la Declaración Jurada, sino que resultan aplicables exclusivamente cuando el monto que surja de aplicar la alícuota no alcance dicho importe.</div>
+        </div>
+      </details>
+
+      <details class="rubro" id="rubro-25" data-nombre="centrales telefónicas música en espera">
+        <summary><span class="rubro-badge">25</span><span class="rubro-name">Centrales telefónicas — música en espera</span></summary>
+        <div class="rubro-body">
+          <p class="comprende"><strong>Comprende:</strong> centrales telefónicas con música en espera y sistemas similares.</p>
+          <div class="formula-box">Arancel mensual = 20 UVM × cantidad de internos</div>
+        </div>
+      </details>
+
+      <details class="rubro" id="rubro-26" data-nombre="call centers atención telefónica">
+        <summary><span class="rubro-badge">26</span><span class="rubro-name">Call centers</span></summary>
+        <div class="rubro-body">
+          <p class="comprende"><strong>Comprende:</strong> call centers y centros de atención telefónica similares.</p>
+          <div class="formula-box">Arancel mensual = 5 UVM × cantidad de puestos</div>
+        </div>
+      </details>
+
+      <details class="rubro" id="rubro-27" data-nombre="usos no comprendidos otros rubros tarifa mínima">
+        <summary><span class="rubro-badge">27</span><span class="rubro-name">Usos no comprendidos en otros rubros</span></summary>
+        <div class="rubro-body">
+          <p class="comprende">Para todo uso que no encuadre en los rubros precedentes, se aplicará la tarifa mínima mensual general.</p>
+          <div class="formula-box">Arancel mínimo mensual = 100 UVM × Coef. Territorial × Coef. de Uso</div>
+        </div>
+      </details>
+
+    </div>
+
+    <p class="note" id="sin-resultados" style="display:none; text-align:center;">No se encontraron rubros que coincidan con la búsqueda.</p>
+  </section>
+
+  <section class="parte" id="parte-3">
+    <div class="parte-kicker">Parte III</div>
+    <h2 class="parte-title">Descuentos</h2>
+    <h3 class="art-title">6. Descuentos por pago anticipado</h3>
+    <p class="body-text">Con el objeto de incentivar el cumplimiento voluntario y reducir la morosidad, se contempla la posibilidad de otorgar descuentos cuando el usuario abone por adelantado períodos que superen el pago mensual:</p>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Período</th><th>Descuento aplicable</th></tr></thead>
+        <tbody>
+          <tr><td>Trimestral</td><td>5% sobre el monto total del período</td></tr>
+          <tr><td>Semestral</td><td>10% sobre el monto total del período</td></tr>
+          <tr><td>Anual</td><td>15% sobre el monto total del período</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="note">AADI podrá revisar estos porcentajes mensualmente, teniendo en cuenta la inflación actual y prevista, sin necesidad de modificar el presente reglamento.</div>
+  </section>
+
+  <div class="contact-section">
+    <p>¿Tenés dudas sobre el arancel que corresponde a tu actividad?</p>
+    <p><a href="mailto:gestion.usuarios@aadim.org.ar">gestion.usuarios@aadim.org.ar</a> · Tel: (+54 11) 3987-3335</p>
+  </div>
+
+</main>
+
+<footer>
+  <p style="color:#ccc; font-weight:700; text-transform:uppercase; letter-spacing:0.06em; font-size:0.82rem; margin-bottom:8px;">División Recaudaciones de AADI SGC</p>
+  <p>AADI SGC — Viamonte 1665 (C1055ABE), Buenos Aires, Argentina</p>
+  <p>Tel: (+54 11) 3987-3335 · <a href="mailto:gestion.usuarios@aadim.org.ar">gestion.usuarios@aadim.org.ar</a> · <a href="https://www.aadim.org.ar" target="_blank" rel="noopener">www.aadim.org.ar</a></p>
+  <p>© 2026 AADI Gestora — Gestionando derechos de intérprete. Todos los derechos reservados.</p>
+</footer>
+
+<script>
+  (function () {
+    const rubros = Array.from(document.querySelectorAll('details.rubro'));
+    const tocGrid = document.getElementById('toc-grid');
+    const buscador = document.getElementById('buscador');
+    const sinResultados = document.getElementById('sin-resultados');
+
+    rubros.forEach(function (r) {
+      const badge = r.querySelector('.rubro-badge').textContent;
+      const nombre = r.querySelector('.rubro-name').textContent;
+      const item = document.createElement('a');
+      item.className = 'toc-item';
+      item.href = '#' + r.id;
+      item.innerHTML = '<span class="n">' + badge + '</span><span>' + nombre + '</span>';
+      item.addEventListener('click', function (e) {
+        e.preventDefault();
+        r.open = true;
+        r.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+      tocGrid.appendChild(item);
+    });
+
+    document.getElementById('btn-expandir').addEventListener('click', function () {
+      rubros.forEach(function (r) { r.open = true; });
+    });
+    document.getElementById('btn-colapsar').addEventListener('click', function () {
+      rubros.forEach(function (r) { r.open = false; });
+    });
+
+    buscador.addEventListener('input', function () {
+      const q = buscador.value.trim().toLowerCase();
+      let visibles = 0;
+      rubros.forEach(function (r) {
+        const nombre = r.querySelector('.rubro-name').textContent.toLowerCase();
+        const badge = r.querySelector('.rubro-badge').textContent.toLowerCase();
+        const extra = (r.getAttribute('data-nombre') || '').toLowerCase();
+        const match = !q || nombre.includes(q) || badge.includes(q) || extra.includes(q);
+        r.classList.toggle('oculto', !match);
+        if (match) visibles++;
+      });
+      sinResultados.style.display = visibles === 0 ? 'block' : 'none';
+    });
+  })();
+</script>
+
+</body>
+</html>
